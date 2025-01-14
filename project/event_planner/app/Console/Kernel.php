@@ -16,6 +16,17 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        // $schedule->command('events:notify-upcoming')->dailyAt('09:00');
+        // $schedule->command('events:notify-upcoming')->everyMinute();
+        $schedule->command('events:notify-upcoming')
+        ->everyMinute()
+        ->onSuccess(function () {
+            echo "Command executed successfully.\n";
+        })
+        ->onFailure(function () {
+            echo "Command failed to execute.\n";
+        });
+
     }
 
     /**
