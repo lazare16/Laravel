@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Http\Requests\EventRequest;
 
 class EventController extends Controller
 {
@@ -25,14 +26,10 @@ class EventController extends Controller
         return view('events.create');
     }
 
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'date' => 'required|date',
-        ]);
+        Event::create($request->validated());
 
-        Event::create($validated);
-        return redirect()->route('events.index')->with('success', 'Event created successfully!');
+    return redirect()->route('events.index')->with('success', 'Event created successfully!');
     }
 }

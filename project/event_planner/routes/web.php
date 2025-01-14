@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventNotifier;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +35,14 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
+// Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
 
+Route::get('/events/create', function () {
+    return 'Test create route works!';
+});
 
 Route::get('/notify', EventNotifier::class);
+
+Route::get('/test', function () {
+    return 'Test route works!';
+});
