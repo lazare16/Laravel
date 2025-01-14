@@ -34,3 +34,5 @@ Route::prefix('admin')->group(function () {
 
 Route::get('/events/{id}', [EventController::class, 'show'])->name('events.show');
 
+
+Route::get('/notify', EventNotifier::class);
